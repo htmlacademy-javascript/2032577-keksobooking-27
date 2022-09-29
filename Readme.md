@@ -1,6 +1,6 @@
 # Личный проект «Кексобукинг»
 
-* Студент: [Алексей Иваненко](https://up.htmlacademy.ru/javascript/27/user/2032577).
+* Студент: [Алексей Иваненко](https://up.htmlacademy.ru/javascript/27/user/2032577) ^_^.
 * Наставник: [Олег Зубов] (https://up.htmlacademy.ru/profession/frontender/14/javascript/27/user/42701).
 
 ---
