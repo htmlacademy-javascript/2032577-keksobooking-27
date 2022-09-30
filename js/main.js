@@ -7,8 +7,8 @@ const randomize = (min, max) => {
 
 const randomizeCordinate = (min, max, afterDote) => {
   if (max - min > 0 && min >= 0) {
-    let number = Math.random() * (max - min) + min;
-    return Number(number.toFixed(afterDote))
+    const number = Math.random() * (max - min) + min;
+    return Number(number.toFixed(afterDote));
   }
   return NaN;
 };
