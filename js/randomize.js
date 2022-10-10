@@ -53,8 +53,4 @@ const getArrayRandomCount = (elements) => {
   return randomCountArray;
 };
 
-export {getRandomPositiveInteger};
-export {getRandomPositiveFloat};
-export {getArrayRandomCount};
-export {getRandomArrayElement};
-export {getRandomPositiveIntegerNotRepeatArray};
+export {getRandomPositiveInteger, getRandomPositiveFloat, getArrayRandomCount, getRandomArrayElement, getRandomPositiveIntegerNotRepeatArray};

@@ -72,6 +72,6 @@ const createApartmentAdd = () => ({
   }
 });
 
-const rentList = () => Array.from({length: RENT_ADD_COUNT}, createApartmentAdd);
+const getRentList = () => Array.from({length: RENT_ADD_COUNT}, createApartmentAdd);
 
-export {rentList};
+export {getRentList};
