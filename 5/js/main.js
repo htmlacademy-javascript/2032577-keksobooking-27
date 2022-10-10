@@ -1,2 +1,1 @@
-import {rentList} from './data.js';
-
+import {getRentList} from './data.js';
