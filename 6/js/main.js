@@ -1,0 +1,1 @@
+import './rent-list.js';
