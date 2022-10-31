@@ -7,10 +7,10 @@ const pristine = new Pristine(adForm, {
   errorTextParent: 'ad-form__element',
   errorTextTag: 'span',
   erorTextClass: 'form__error'
-}, false);
+});
 
 function validateTitle (value) {
-  return value.length >= 30 && value.length <= 1000;
+  return value.length >= 30 && value.length <= 100;
 }
 
 pristine.addValidator(
@@ -19,6 +19,30 @@ pristine.addValidator(
   'От 30 до 100 символов'
 );
 
+const priceField = adForm.querySelector('#price');
+const typeForm = adForm.querySelector('#type');
+
+const priceOption = {
+  'bungalow' : 0,
+  'flat' : 1000,
+  'hotel' : 3000,
+  'house' : 5000,
+  'palace' : 10000
+};
+
+function validatePrice () {
+  return priceField.value < 100000 && priceField.value >= priceOption[typeForm.value];
+}
+
+function getValidateErrorText () {
+  return (priceField.value < 100000) ? `Минимальная цена за ночь ${priceOption[typeForm.value]}.` : `Максимальная цена за ночь 100 000.`
+}
+
+pristine.addValidator(
+  adForm.querySelector('#price'),
+  validatePrice,
+  getValidateErrorText
+);
 
 adForm.addEventListener('submit', (evt) => {
   evt.preventDefault();
