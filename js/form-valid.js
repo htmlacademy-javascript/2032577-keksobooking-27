@@ -44,6 +44,23 @@ pristine.addValidator(
   getValidateErrorText
 );
 
+typeForm.addEventListener('change', () => {
+  priceField.setAttribute('placeholder', priceOption[typeForm.value])
+})
+
+const timeinForm = document.querySelector('#timein');
+const timeoutForm = document.querySelector('#timeout');
+
+timeinForm.addEventListener('change', () => {
+  timeoutForm.value = timeinForm.value
+}
+)
+
+timeoutForm.addEventListener('change', () => {
+  timeinForm.value = timeoutForm.value
+}
+)
+
 adForm.addEventListener('submit', (evt) => {
   evt.preventDefault();
   pristine.validate();
