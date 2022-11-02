@@ -29,11 +29,11 @@ adRent.forEach((ad) => {
     adRentElement.querySelector('.popup__text--price').classList.add('visually-hidden');
   }
   if (ad.offer.type.length) {
-    (ad.offer.type === 'flat') && (adRentElement.querySelector('.popup__type').textContent = 'Квартира');
-    (ad.offer.type === 'bungalow') && (adRentElement.querySelector('.popup__type').textContent = 'Бунгало');
-    (ad.offer.type === 'house') && (adRentElement.querySelector('.popup__type').textContent = 'Дом');
-    (ad.offer.type === 'palace') && (adRentElement.querySelector('.popup__type').textContent = 'Дворец');
-    (ad.offer.type === 'hotel') && (adRentElement.querySelector('.popup__type').textContent = 'Отель');
+    if (ad.offer.type === 'flat') {adRentElement.querySelector('.popup__type').textContent = 'Квартира';}
+    if (ad.offer.type === 'bungalow') {adRentElement.querySelector('.popup__type').textContent = 'Бунгало';}
+    if (ad.offer.type === 'house') {adRentElement.querySelector('.popup__type').textContent = 'Дом';}
+    if (ad.offer.type === 'palace') {adRentElement.querySelector('.popup__type').textContent = 'Дворец';}
+    if (ad.offer.type === 'hotel') {adRentElement.querySelector('.popup__type').textContent = 'Отель';}
   } else {
     adRentElement.querySelector('.popup__type').classList.add('visually-hidden');
   }
@@ -50,9 +50,9 @@ adRent.forEach((ad) => {
   adRentElement.querySelectorAll('.popup__feature').forEach((feature) => {
     let flag = 0;
     for (let i = 0; i <= ad.offer.features.length - 1; i++) {
-      feature.classList[1].includes(ad.offer.features[i]) && flag++;
+      if (feature.classList[1].includes(ad.offer.features[i])) {flag++;}
     }
-    !flag && feature.remove();
+    if (!flag) {feature.remove();}
   });
   if (ad.offer.description.length) {
     adRentElement.querySelector('.popup__description').textContent = ad.offer.description;
