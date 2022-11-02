@@ -35,7 +35,7 @@ function validatePrice () {
 }
 
 function getValidateErrorText () {
-  return (priceField.value < 100000) ? `Минимальная цена за ночь ${priceOption[typeForm.value]}.` : `Максимальная цена за ночь 100 000.`
+  return (priceField.value < 100000) ? `Минимальная цена за ночь ${priceOption[typeForm.value]}.` : 'Максимальная цена за ночь 100 000.';
 }
 
 pristine.addValidator(
@@ -45,21 +45,21 @@ pristine.addValidator(
 );
 
 typeForm.addEventListener('change', () => {
-  priceField.setAttribute('placeholder', priceOption[typeForm.value])
-})
+  priceField.setAttribute('placeholder', priceOption[typeForm.value]);
+});
 
 const timeinForm = document.querySelector('#timein');
 const timeoutForm = document.querySelector('#timeout');
 
 timeinForm.addEventListener('change', () => {
-  timeoutForm.value = timeinForm.value
+  timeoutForm.value = timeinForm.value;
 }
-)
+);
 
 timeoutForm.addEventListener('change', () => {
-  timeinForm.value = timeoutForm.value
+  timeinForm.value = timeoutForm.value;
 }
-)
+);
 
 adForm.addEventListener('submit', (evt) => {
   evt.preventDefault();

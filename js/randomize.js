@@ -26,7 +26,11 @@ const getRandomPositiveIntegerNotRepeatArray = (a, b, lenght) => {
     if (arrayNumbers.includes(`0${number}`) || arrayNumbers.includes(number)) {
       continue;
     }
-    (number < 10) ? arrayNumbers.push(`0${number}`) : arrayNumbers.push(number);
+    if (number < 10) {
+      arrayNumbers.push(`0${number}`);
+    } else {
+      arrayNumbers.push(number);
+    }
   }
   return arrayNumbers;
 };
