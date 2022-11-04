@@ -7,9 +7,9 @@ function nonActive() {
   const mapFormFeatures = document.querySelector('.map__features');
   adForm.classList.add('ad-form--disabled');
   adFormHeader.setAttribute('disabled', 'disabled');
-  adFormList.forEach(elem => elem.setAttribute('disabled', 'disabled'));
+  adFormList.forEach((elem) => elem.setAttribute('disabled', 'disabled'));
   mapForm.classList.add('map__filters--disabled');
-  mapFormList.forEach(elem => elem.setAttribute('diabled', 'disabled'));
+  mapFormList.forEach((elem) => elem.setAttribute('diabled', 'disabled'));
   mapFormFeatures.setAttribute('disabled', 'disabled');
 }
 
