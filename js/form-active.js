@@ -31,9 +31,9 @@ const coordinateForm = document.querySelector('#address');
 
 const setDefaultCoordinate = (defaultCoordinate) => {
   coordinateForm.value = `${defaultCoordinate.lat}, ${defaultCoordinate.lng}`;
-}
+};
 const setCoordinate = (coordinate) => {
   coordinateForm.value = String(coordinate).slice(7, -1);
-}
+};
 
 export {nonActive, active, setCoordinate, setDefaultCoordinate};

@@ -7,7 +7,7 @@ const minPrice = {
   'hotel' : 3000,
   'house' : 5000,
   'palace' : 10000
-}
+};
 
 noUiSlider.create(sliderElement, {
   range: {
@@ -29,7 +29,7 @@ noUiSlider.create(sliderElement, {
 
 sliderElement.noUiSlider.on('update', () => {
   priceField.value = sliderElement.noUiSlider.get();
-})
+});
 
 type.addEventListener('change', (evt) => {
   sliderElement.noUiSlider.updateOptions({
@@ -37,5 +37,5 @@ type.addEventListener('change', (evt) => {
       min: minPrice[evt.target.value],
       max: 100000
     }
-  })
-})
+  });
+});

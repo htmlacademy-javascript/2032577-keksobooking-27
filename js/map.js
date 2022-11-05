@@ -51,7 +51,7 @@ const createAdPinMarkers = (ads) => {
         icon: adPinIcon
       }
     );
-    marker.addTo(markerGroup).bindPopup(createRentAd(ad))
+    marker.addTo(markerGroup).bindPopup(createRentAd(ad));
   });
 };
 
@@ -62,14 +62,10 @@ const setAdPins = (offers) => {
 
 const setOnMapLoad = (cb) => {
   map.on('load', cb);
-}
+};
 
 const setOnMainPinMove = (cb) => {
   mainPinMarker.on('move', (evt) => (cb(evt.target.getLatLng())));
-}
+};
 
 export {initMap, setOnMapLoad, setOnMainPinMove, setAdPins, createAdPinMarkers};
-
-
-
-
