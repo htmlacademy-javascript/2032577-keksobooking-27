@@ -1,4 +1,9 @@
+import { sendRentAd } from "./server-data.js";
+import { onSuccess, onError } from "./util.js";
+
+
 const adForm = document.querySelector('.ad-form');
+const submitButton = document.querySelector('.ad-form__submit');
 
 const pristine = new Pristine(adForm, {
   classTo: 'ad-form__element',
@@ -48,6 +53,26 @@ typeForm.addEventListener('change', () => {
   priceField.setAttribute('placeholder', priceOption[typeForm.value]);
 });
 
+const guestsOption = {
+  1 : ['1'],
+  2 : ['1', '2'],
+  3 : ['1', '2', '3'],
+  100 : ['0']
+}
+
+const countGuest = adForm.querySelector('#room_number');
+const capacity = adForm.querySelector('#capacity');
+
+const validateCapacity = () => {
+  return guestsOption[countGuest.value].indexOf(capacity.value) + 1;
+}
+
+pristine.addValidator(
+  adForm.querySelector('#capacity'),
+  validateCapacity,
+  "Измените количество мест!"
+)
+
 const timeinForm = document.querySelector('#timein');
 const timeoutForm = document.querySelector('#timeout');
 
@@ -61,8 +86,47 @@ timeoutForm.addEventListener('change', () => {
 }
 );
 
-adForm.addEventListener('submit', (evt) => {
-  evt.preventDefault();
-  pristine.validate();
-});
+const blockSubmitButton = () => {
+  submitButton.disabled = true;
+  submitButton.textContent = 'Сохраняю...';
+};
+
+const unblockSubmitButton = () => {
+  submitButton.disabled = false;
+  submitButton.textContent = 'Сохранить';
+};
+
+const submitRentAd = () => {
+  adForm.addEventListener('submit', (evt) => {
+    evt.preventDefault();
+
+    const isValid = pristine.validate();
+    if (isValid) {
+      blockSubmitButton();
+      sendRentAd(() => {
+        onSuccess();
+        unblockSubmitButton();
+        adForm.reset();
+      },
+      () => {
+        onError();
+        unblockSubmitButton()
+      },
+      new FormData(evt.target),
+      );
+    };
+  });
+
+};
+
+const resetButton = document.querySelector('.ad-form__reset');
+
+const onResetButton = () => {
+  resetButton.addEventListener('click', (evt) => {
+    evt.preventDefault();
+    adForm.reset();
+  })
+}
+
+export {submitRentAd, onResetButton}
 

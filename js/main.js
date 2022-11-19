@@ -1,9 +1,10 @@
 import {initMap, setOnMapLoad, setOnMainPinMove, setAdPins} from './map.js';
 import {nonActive, active, setCoordinate, setDefaultCoordinate} from './form-active.js';
 import './slider.js';
-import './form-valid.js';
+import {submitRentAd, onResetButton} from './form-valid.js';
 import './map.js';
-import {getRentAds} from './server-data.js'
+import {getRentAds, sendRentAd} from './server-data.js';
+import {events} from './util.js'
 
 nonActive();
 
@@ -18,4 +19,9 @@ getRentAds();
 setOnMapLoad(active());
 setDefaultCoordinate(START_COORDINATE);
 setOnMainPinMove(setCoordinate);
+sendRentAd();
+submitRentAd();
+events();
+onResetButton();
+
 

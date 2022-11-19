@@ -58,7 +58,7 @@ const createAdPinMarkers = (ads) => {
 
 const setAdPins = (offers) => {
   markerGroup.clearLayers();
-  getRentAds(offers.slice(0, AD_COUNTS));
+  createAdPinMarkers(offers.slice(0, AD_COUNTS));
 };
 
 const setOnMapLoad = (cb) => {
@@ -68,5 +68,7 @@ const setOnMapLoad = (cb) => {
 const setOnMainPinMove = (cb) => {
   mainPinMarker.on('move', (evt) => (cb(evt.target.getLatLng())));
 };
+
+
 
 export {initMap, setOnMapLoad, setOnMainPinMove, setAdPins, createAdPinMarkers};
