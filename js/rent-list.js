@@ -31,7 +31,7 @@ const createRentAd = (ad) => {
     });
   } else {
     adRentElement.querySelector('.popup__feature').remove();
-  };
+  }
   if (ad.offer.hasOwnProperty('description')) {
     adRentElement.querySelector('.popup__description').textContent =
       ad.offer.description;

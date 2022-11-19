@@ -1,31 +1,34 @@
-const successTemplate = document.querySelector('#success').content.querySelector('.success');
-const errorTemplate = document.querySelector('#error').content.querySelector('.error');
-
+const successTemplate = document
+  .querySelector('#success')
+  .content.querySelector('.success');
+const errorTemplate = document
+  .querySelector('#error')
+  .content.querySelector('.error');
 
 const onSuccess = () => {
   const alertMessage = successTemplate.cloneNode(true);
   document.body.append(alertMessage);
-  document.addEventListener('click', () => {alertMessage.remove()})
-}
+  document.addEventListener('click', () => {
+    alertMessage.remove();
+  });
+};
 
 const onError = () => {
   const alertMessage = errorTemplate.cloneNode(true);
   document.body.append(alertMessage);
   const errorButton = document.querySelector('.error__button');
-  errorButton.addEventListener('click', () => {alertMessage.remove()});
-  document.addEventListener('click', () => {alertMessage.remove()})
-}
-
-const onEsc = (evt) => {
-  if (evt.key === 'Escape') {
-    evt.preventDefault();
+  errorButton.addEventListener('click', () => {
     alertMessage.remove();
-  }
-}
-
-const events = () => {
-document.addEventListener('keydown', onEsc);
-
+  });
+  document.addEventListener('click', () => {
+    alertMessage.remove();
+  });
+  document.addEventListener('keydown', (evt) => {
+    if (evt.key === 'Escape') {
+      evt.preventDefault();
+      alertMessage.remove();
+    }
+  });
 };
 
 const showAlert = (message) => {
@@ -49,4 +52,4 @@ const showAlert = (message) => {
   }, 3000);
 };
 
-export {onSuccess, onError, events, showAlert};
+export { onSuccess, onError, showAlert };

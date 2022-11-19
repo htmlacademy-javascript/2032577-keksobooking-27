@@ -1,5 +1,4 @@
 import {createRentAd} from './rent-list.js';
-import { getRentAds } from './server-data.js';
 
 const AD_COUNTS = 10;
 const map = L.map('map-canvas');
@@ -68,7 +67,5 @@ const setOnMapLoad = (cb) => {
 const setOnMainPinMove = (cb) => {
   mainPinMarker.on('move', (evt) => (cb(evt.target.getLatLng())));
 };
-
-
 
 export {initMap, setOnMapLoad, setOnMainPinMove, setAdPins, createAdPinMarkers};

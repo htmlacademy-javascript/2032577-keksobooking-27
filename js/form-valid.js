@@ -1,6 +1,5 @@
-import { sendRentAd } from "./server-data.js";
-import { onSuccess, onError } from "./util.js";
-
+import { sendRentAd } from './server-data.js';
+import { onSuccess, onError } from './util.js';
 
 const adForm = document.querySelector('.ad-form');
 const submitButton = document.querySelector('.ad-form__submit');
@@ -11,10 +10,10 @@ const pristine = new Pristine(adForm, {
   successClass: 'ad-form__element--valid',
   errorTextParent: 'ad-form__element',
   errorTextTag: 'span',
-  erorTextClass: 'form__error'
+  erorTextClass: 'form__error',
 });
 
-function validateTitle (value) {
+function validateTitle(value) {
   return value.length >= 30 && value.length <= 100;
 }
 
@@ -28,19 +27,23 @@ const priceField = adForm.querySelector('#price');
 const typeForm = adForm.querySelector('#type');
 
 const priceOption = {
-  'bungalow' : 0,
-  'flat' : 1000,
-  'hotel' : 3000,
-  'house' : 5000,
-  'palace' : 10000
+  bungalow: 0,
+  flat: 1000,
+  hotel: 3000,
+  house: 5000,
+  palace: 10000,
 };
 
-function validatePrice () {
-  return priceField.value < 100000 && priceField.value >= priceOption[typeForm.value];
+function validatePrice() {
+  return (
+    priceField.value < 100000 && priceField.value >= priceOption[typeForm.value]
+  );
 }
 
-function getValidateErrorText () {
-  return (priceField.value < 100000) ? `Минимальная цена за ночь ${priceOption[typeForm.value]}.` : 'Максимальная цена за ночь 100 000.';
+function getValidateErrorText() {
+  return priceField.value < 100000
+    ? `Минимальная цена за ночь ${priceOption[typeForm.value]}.`
+    : 'Максимальная цена за ночь 100 000.';
 }
 
 pristine.addValidator(
@@ -54,37 +57,33 @@ typeForm.addEventListener('change', () => {
 });
 
 const guestsOption = {
-  1 : ['1'],
-  2 : ['1', '2'],
-  3 : ['1', '2', '3'],
-  100 : ['0']
-}
+  1: ['1'],
+  2: ['1', '2'],
+  3: ['1', '2', '3'],
+  100: ['0'],
+};
 
 const countGuest = adForm.querySelector('#room_number');
 const capacity = adForm.querySelector('#capacity');
 
-const validateCapacity = () => {
-  return guestsOption[countGuest.value].indexOf(capacity.value) + 1;
-}
+const validateCapacity = () => guestsOption[countGuest.value].indexOf(capacity.value) + 1;
 
 pristine.addValidator(
   adForm.querySelector('#capacity'),
   validateCapacity,
-  "Измените количество мест!"
-)
+  'Измените количество мест!'
+);
 
 const timeinForm = document.querySelector('#timein');
 const timeoutForm = document.querySelector('#timeout');
 
 timeinForm.addEventListener('change', () => {
   timeoutForm.value = timeinForm.value;
-}
-);
+});
 
 timeoutForm.addEventListener('change', () => {
   timeinForm.value = timeoutForm.value;
-}
-);
+});
 
 const blockSubmitButton = () => {
   submitButton.disabled = true;
@@ -103,20 +102,20 @@ const submitRentAd = () => {
     const isValid = pristine.validate();
     if (isValid) {
       blockSubmitButton();
-      sendRentAd(() => {
-        onSuccess();
-        unblockSubmitButton();
-        adForm.reset();
-      },
-      () => {
-        onError();
-        unblockSubmitButton()
-      },
-      new FormData(evt.target),
+      sendRentAd(
+        () => {
+          onSuccess();
+          unblockSubmitButton();
+          adForm.reset();
+        },
+        () => {
+          onError();
+          unblockSubmitButton();
+        },
+        new FormData(evt.target)
       );
-    };
+    }
   });
-
 };
 
 const resetButton = document.querySelector('.ad-form__reset');
@@ -125,8 +124,7 @@ const onResetButton = () => {
   resetButton.addEventListener('click', (evt) => {
     evt.preventDefault();
     adForm.reset();
-  })
-}
+  });
+};
 
-export {submitRentAd, onResetButton}
-
+export { submitRentAd, onResetButton };
