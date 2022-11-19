@@ -1,4 +1,5 @@
 import {createRentAd} from './rent-list.js';
+import { getRentAds } from './server-data.js';
 
 const AD_COUNTS = 10;
 const map = L.map('map-canvas');
@@ -57,7 +58,7 @@ const createAdPinMarkers = (ads) => {
 
 const setAdPins = (offers) => {
   markerGroup.clearLayers();
-  createAdPinMarkers(offers.slice(0, AD_COUNTS));
+  getRentAds(offers.slice(0, AD_COUNTS));
 };
 
 const setOnMapLoad = (cb) => {
