@@ -3,7 +3,8 @@ import {nonActive, active, setCoordinate, setDefaultCoordinate} from './form-act
 import './slider.js';
 import {submitRentAd, onResetButton} from './form-valid.js';
 import './map.js';
-import {getRentAds, sendRentAd} from './server-data.js';
+import {getRentAds, sendRentAd, changeFilter} from './server-data.js';
+
 
 nonActive();
 
@@ -15,11 +16,13 @@ const START_COORDINATE = {
 
 initMap(START_COORDINATE);
 getRentAds();
+changeFilter();
 setOnMapLoad(active());
 setDefaultCoordinate(START_COORDINATE);
 setOnMainPinMove(setCoordinate);
 sendRentAd();
 submitRentAd();
 onResetButton();
+
 
 
