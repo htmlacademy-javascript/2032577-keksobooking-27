@@ -20,7 +20,6 @@ changeFilter();
 setOnMapLoad(active());
 setDefaultCoordinate(START_COORDINATE);
 setOnMainPinMove(setCoordinate);
-sendRentAd();
 submitRentAd();
 onResetButton();
 

@@ -1,3 +1,4 @@
+const AD_COUNTS = 10;
 const priceFilter = [0, 10000, 50000];
 const transformPriceList = ['low', 'middle', 'high'];
 const priceFiltered = (num, value) => {
@@ -11,13 +12,11 @@ const priceFiltered = (num, value) => {
   return (result === value);
 }
 
-const featuresFilter = (adFeatures, mapFeatures) => {
-  let result;
+const featuresFilter = (adFeatures = [], mapFeatures) => {
+  let result = true;
+  let adFeaturesList = adFeatures.from();
   for (let i = 0; i < mapFeatures.length; i++) {
-    result = mapFeatures[i].includes(adFeatures);
-    if (!result) {
-      return false
-    }
+    result = adFeaturesList.includes(mapFeatures[i]);
   }
   return result
 }
@@ -34,25 +33,30 @@ const applyFilter = (arr) => {
       selectedFilteres.push(checkbox.value);
     }
   });
-  let result = arr.slice();
-  if (mapFilterType !== 'any') {
-    result = result.filter(arg => arg.offer.type === mapFilterType);
-  };
-  if (mapFilterRooms !== 'any') {
-    result = result.filter(arg => String(arg.offer.rooms) === String(mapFilterRooms));
+  const temporalArray = arr.slice();
+  const result = [];
+  for (let i = 0; i < temporalArray.length; i++) {
+    if (result.length > AD_COUNTS - 1) {
+      break
+    }
+    if ((mapFilterType != 'any') && (temporalArray[i].offer.type !== mapFilterType)) {
+      continue
+    }
+    if ((mapFilterRooms != 'any') && (String(temporalArray[i].offer.rooms) !== String(mapFilterRooms))) {
+      continue
+    }
+    if ((mapFilterGuests != 'any') && (String(temporalArray[i].offer.guests) !== String(mapFilterGuests))) {
+      continue
+    }
+    if ((mapFilterPrice != 'any') && (!priceFiltered(temporalArray[i].offer.price, mapFilterPrice))) {
+      continue
+    }
+    if ((selectedFilteres.length != 0) && (!featuresFilter(temporalArray[i].offer.features, selectedFilteres))) {
+      continue
+    }
+      result.push(temporalArray[i]);
+    }
+    return result
   }
-  if (mapFilterGuests !== 'any') {
-    result = result.filter(arg => String(arg.offer.guests) === String(mapFilterGuests));
-  }
-  if (mapFilterPrice !== 'any') {
-    result = result.filter(arg => priceFiltered(arg.offer.price, mapFilterPrice));
-  }
-  if (mapFeatures.length != 0) {
-    result = result.filter(arg => ((arg.offer.features != undefined) && featuresFilter(arg.offer.features, selectedFilteres)));
-  }
-  return result
-}
-
-
 
 export {applyFilter}

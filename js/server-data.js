@@ -6,7 +6,7 @@ const mapFilterType = document.querySelector('#housing-type');
 const mapFilterRooms = document.querySelector('#housing-rooms');
 const mapFilterGuests = document.querySelector('#housing-guests');
 const mapFilterPrice = document.querySelector('#housing-price');
-const mapFeatures = document.querySelectorAll('.map__checkbox');
+const mapFeatures = document.querySelector('#housing-features');
 
 const getRentAds = () => {
   fetch('https://27.javascript.pages.academy/keksobooking/data')
@@ -32,7 +32,7 @@ const changeFilter = () => {
   mapFilterRooms.addEventListener('change', getRentAds);
   mapFilterGuests.addEventListener('change', getRentAds);
   mapFilterPrice.addEventListener('change', getRentAds);
-  mapFeatures.forEach((features) => features.addEventListener('change', getRentAds));
+  mapFeatures.addEventListener('change', getRentAds);
 };
 
 const sendRentAd = (onSuccess, onFail, body) => {
