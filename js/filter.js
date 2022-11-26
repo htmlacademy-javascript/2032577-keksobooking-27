@@ -14,7 +14,7 @@ const priceFiltered = (num, value) => {
 
 const featuresFilter = (adFeatures = [], mapFeatures) => {
   let result = true;
-  const adFeaturesList = adFeatures.from();
+  const adFeaturesList = [...adFeatures];
   for (let i = 0; i < mapFeatures.length; i++) {
     result = adFeaturesList.includes(mapFeatures[i]);
   }
@@ -57,6 +57,7 @@ const applyFilter = (arr) => {
     result.push(temporalArray[i]);
   }
   return result;
+
 };
 
 export {applyFilter};
