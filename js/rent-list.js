@@ -17,28 +17,28 @@ const createRentAd = (ad) => {
   adRentElement.querySelector('.popup__type').textContent = typeEngRUList[ad.offer.type];
   adRentElement.querySelector('.popup__text--capacity').textContent = `${ad.offer.rooms} комнаты для ${ad.offer.guests} гостей.`;
   adRentElement.querySelector('.popup__text--time').textContent = `Заезд после ${ad.offer.checkin}, выезд до ${ad.offer.checkout}.`;
-  if (ad.offer.hasOwnProperty.call('features')) {
+  if (Object.prototype.hasOwnProperty.call(ad.offer, 'features')) {
     adRentElement.querySelectorAll('.popup__feature').forEach((feature) => {
       let flag = 0;
       for (let i = 0; i <= ad.offer.features.length - 1; i++) {
-        if (feature.classList[1].includes(ad.offer.features[i])) {
+        if (feature.classList[1].search(ad.offer.features[i]) !== -1 && feature.classList[1].search(ad.offer.features[i]) !== 20) {
           flag++;
         }
       }
-      if (!flag) {
+      if (flag === 0) {
         feature.remove();
       }
     });
   } else {
     adRentElement.querySelector('.popup__feature').remove();
   }
-  if (ad.offer.hasOwnProperty.call('description')) {
+  if (Object.prototype.hasOwnProperty.call(ad.offer, 'description')) {
     adRentElement.querySelector('.popup__description').textContent =
       ad.offer.description;
   } else {
     adRentElement.querySelector('.popup__description').remove();
   }
-  if (ad.offer.hasOwnProperty.call('photos')) {
+  if (Object.prototype.hasOwnProperty.call(ad.offer, 'photos')) {
     const adPhotoList = adRentElement.querySelector('.popup__photos');
     const adPhoto = adPhotoList.querySelector('.popup__photo').cloneNode(true);
     adPhotoList

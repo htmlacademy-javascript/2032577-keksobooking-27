@@ -6,7 +6,7 @@ const mapFilterType = document.querySelector('#housing-type');
 const mapFilterRooms = document.querySelector('#housing-rooms');
 const mapFilterGuests = document.querySelector('#housing-guests');
 const mapFilterPrice = document.querySelector('#housing-price');
-const mapFeatures = document.querySelector('#housing-features');
+const mapFeaturesList = document.querySelector('#housing-features');
 
 const getRentAds = () => {
   fetch('https://27.javascript.pages.academy/keksobooking/data')
@@ -28,11 +28,12 @@ const getRentAds = () => {
 };
 
 const changeFilter = () => {
+  getRentAds();
   mapFilterType.addEventListener('change', getRentAds);
   mapFilterRooms.addEventListener('change', getRentAds);
   mapFilterGuests.addEventListener('change', getRentAds);
   mapFilterPrice.addEventListener('change', getRentAds);
-  mapFeatures.addEventListener('change', getRentAds);
+  mapFeaturesList.addEventListener('change', getRentAds);
 };
 
 const sendRentAd = (onSuccess, onFail, body) => {

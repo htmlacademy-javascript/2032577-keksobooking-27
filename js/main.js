@@ -3,20 +3,20 @@ import {nonActive, active, setCoordinate, setDefaultCoordinate} from './form-act
 import './slider.js';
 import {submitRentAd, onResetButton} from './form-valid.js';
 import './map.js';
-import {getRentAds, changeFilter} from './server-data.js';
-
-nonActive();
+import {changeFilter} from './server-data.js';
+import {changeAvatar} from './avatar.js';
 
 const START_COORDINATE = {
   lat: 35.66023,
   lng: 139.73007
 };
 
+nonActive();
 initMap(START_COORDINATE);
-getRentAds();
 changeFilter();
 setOnMapLoad(active());
 setDefaultCoordinate(START_COORDINATE);
 setOnMainPinMove(setCoordinate);
 submitRentAd();
 onResetButton();
+changeAvatar();

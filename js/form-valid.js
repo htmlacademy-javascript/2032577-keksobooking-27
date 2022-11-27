@@ -1,8 +1,15 @@
 import { sendRentAd } from './server-data.js';
 import { onSuccess, onError } from './util.js';
+import {setDefaultCoordinate} from './form-active.js';
+
+const START_COORDINATE = {
+  lat: 35.66023,
+  lng: 139.73007
+};
 
 const adForm = document.querySelector('.ad-form');
 const submitButton = document.querySelector('.ad-form__submit');
+const avatarPreview = document.querySelector('.ad-form-header__preview__image');
 
 const pristine = new Pristine(adForm, {
   classTo: 'ad-form__element',
@@ -107,10 +114,14 @@ const submitRentAd = () => {
           onSuccess();
           unblockSubmitButton();
           adForm.reset();
+          setDefaultCoordinate(START_COORDINATE);
+          avatarPreview.src = 'img/muffin-grey.svg';
         },
         () => {
           onError();
           unblockSubmitButton();
+          setDefaultCoordinate(START_COORDINATE);
+          avatarPreview.src = 'img/muffin-grey.svg';
         },
         new FormData(evt.target)
       );
@@ -124,6 +135,8 @@ const onResetButton = () => {
   resetButton.addEventListener('click', (evt) => {
     evt.preventDefault();
     adForm.reset();
+    setDefaultCoordinate(START_COORDINATE);
+    avatarPreview.src = 'img/muffin-grey.svg';
   });
 };
 
