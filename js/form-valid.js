@@ -9,6 +9,7 @@ const START_COORDINATE = {
 
 const adForm = document.querySelector('.ad-form');
 const submitButton = document.querySelector('.ad-form__submit');
+const avatarPreview = document.querySelector('.ad-form-header__preview__image');
 
 const pristine = new Pristine(adForm, {
   classTo: 'ad-form__element',
@@ -114,11 +115,13 @@ const submitRentAd = () => {
           unblockSubmitButton();
           adForm.reset();
           setDefaultCoordinate(START_COORDINATE);
+          avatarPreview.src = 'img/muffin-grey.svg';
         },
         () => {
           onError();
           unblockSubmitButton();
           setDefaultCoordinate(START_COORDINATE);
+          avatarPreview.src = 'img/muffin-grey.svg';
         },
         new FormData(evt.target)
       );
@@ -133,6 +136,7 @@ const onResetButton = () => {
     evt.preventDefault();
     adForm.reset();
     setDefaultCoordinate(START_COORDINATE);
+    avatarPreview.src = 'img/muffin-grey.svg';
   });
 };
 
