@@ -1,5 +1,11 @@
 import { sendRentAd } from './server-data.js';
 import { onSuccess, onError } from './util.js';
+import {setDefaultCoordinate} from './form-active.js';
+
+const START_COORDINATE = {
+  lat: 35.66023,
+  lng: 139.73007
+};
 
 const adForm = document.querySelector('.ad-form');
 const submitButton = document.querySelector('.ad-form__submit');
@@ -107,10 +113,12 @@ const submitRentAd = () => {
           onSuccess();
           unblockSubmitButton();
           adForm.reset();
+          setDefaultCoordinate(START_COORDINATE);
         },
         () => {
           onError();
           unblockSubmitButton();
+          setDefaultCoordinate(START_COORDINATE);
         },
         new FormData(evt.target)
       );
@@ -124,6 +132,7 @@ const onResetButton = () => {
   resetButton.addEventListener('click', (evt) => {
     evt.preventDefault();
     adForm.reset();
+    setDefaultCoordinate(START_COORDINATE);
   });
 };
 

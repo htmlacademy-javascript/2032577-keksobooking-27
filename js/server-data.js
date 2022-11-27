@@ -28,6 +28,7 @@ const getRentAds = () => {
 };
 
 const changeFilter = () => {
+  getRentAds();
   mapFilterType.addEventListener('change', getRentAds);
   mapFilterRooms.addEventListener('change', getRentAds);
   mapFilterGuests.addEventListener('change', getRentAds);

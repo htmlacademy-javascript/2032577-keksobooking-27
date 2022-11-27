@@ -56,7 +56,7 @@ const createAdPinMarkers = (ads) => {
 
 const setAdPins = (offers) => {
   markerGroup.clearLayers();
-  createAdPinMarkers(offers.slice());
+  createAdPinMarkers([...offers]);
 };
 
 const setOnMapLoad = (cb) => {

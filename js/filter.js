@@ -13,10 +13,13 @@ const priceFiltered = (num, value) => {
 };
 
 const featuresFilter = (adFeatures = [], mapFeatures) => {
-  let result = true;
+  let result;
   const adFeaturesList = [...adFeatures];
   for (let i = 0; i < mapFeatures.length; i++) {
     result = adFeaturesList.includes(mapFeatures[i]);
+    if (!result) {
+      return result;
+    }
   }
   return result;
 };
@@ -28,12 +31,12 @@ const applyFilter = (arr) => {
   const mapFilterGuests = document.querySelector('#housing-guests').value;
   const mapFeatures = document.querySelectorAll('.map__checkbox');
   const selectedFilteres = [];
-  mapFeatures.forEach((checkbox) => {
-    if (checkbox.checked) {
-      selectedFilteres.push(checkbox.value);
+  for (let i = 0; i < mapFeatures.length; i++) {
+    if(mapFeatures[i].checked) {
+      selectedFilteres.push(mapFeatures[i].value);
     }
-  });
-  const temporalArray = arr.slice();
+  }
+  const temporalArray = [...arr];
   const result = [];
   for (let i = 0; i < temporalArray.length; i++) {
     if (result.length > AD_COUNTS - 1) {
