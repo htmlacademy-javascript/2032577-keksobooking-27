@@ -1,3 +1,5 @@
+const errorButton = document.querySelector('.error__button');
+
 const successTemplate = document
   .querySelector('#success')
   .content.querySelector('.success');
@@ -16,7 +18,6 @@ const onSuccess = () => {
 const onError = () => {
   const alertMessage = errorTemplate.cloneNode(true);
   document.body.append(alertMessage);
-  const errorButton = document.querySelector('.error__button');
   errorButton.addEventListener('click', () => {
     alertMessage.remove();
   });
