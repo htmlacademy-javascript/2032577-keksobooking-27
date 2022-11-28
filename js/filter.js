@@ -1,4 +1,11 @@
 const AD_COUNTS = 10;
+
+const mapFilterType = document.querySelector('#housing-type');
+const mapFilterPrice = document.querySelector('#housing-price');
+const mapFilterRooms = document.querySelector('#housing-rooms');
+const mapFilterGuests = document.querySelector('#housing-guests');
+const mapFeatures = document.querySelectorAll('.map__checkbox');
+
 const priceFilter = [0, 10000, 50000];
 const transformPriceList = ['low', 'middle', 'high'];
 const priceFiltered = (num, value) => {
@@ -12,11 +19,11 @@ const priceFiltered = (num, value) => {
   return (result === value);
 };
 
-const featuresFilter = (adFeatures = [], mapFeatures) => {
+const featuresFilter = (adFeatures = [], mapFeaturesList) => {
   let result;
   const adFeaturesList = [...adFeatures];
-  for (let i = 0; i < mapFeatures.length; i++) {
-    result = adFeaturesList.includes(mapFeatures[i]);
+  for (let i = 0; i < mapFeaturesList.length; i++) {
+    result = adFeaturesList.includes(mapFeaturesList[i]);
     if (!result) {
       return result;
     }
@@ -25,11 +32,6 @@ const featuresFilter = (adFeatures = [], mapFeatures) => {
 };
 
 const applyFilter = (arr) => {
-  const mapFilterType = document.querySelector('#housing-type').value;
-  const mapFilterPrice = document.querySelector('#housing-price').value;
-  const mapFilterRooms = document.querySelector('#housing-rooms').value;
-  const mapFilterGuests = document.querySelector('#housing-guests').value;
-  const mapFeatures = document.querySelectorAll('.map__checkbox');
   const selectedFilteres = [];
   for (let i = 0; i < mapFeatures.length; i++) {
     if(mapFeatures[i].checked) {
@@ -42,16 +44,16 @@ const applyFilter = (arr) => {
     if (result.length > AD_COUNTS - 1) {
       break;
     }
-    if ((mapFilterType !== 'any') && (temporalArray[i].offer.type !== mapFilterType)) {
+    if ((mapFilterType.value !== 'any') && (temporalArray[i].offer.type !== mapFilterType.value)) {
       continue;
     }
-    if ((mapFilterRooms !== 'any') && (String(temporalArray[i].offer.rooms) !== String(mapFilterRooms))) {
+    if ((mapFilterRooms.value !== 'any') && (String(temporalArray[i].offer.rooms) !== String(mapFilterRooms.value))) {
       continue;
     }
-    if ((mapFilterGuests !== 'any') && (String(temporalArray[i].offer.guests) !== String(mapFilterGuests))) {
+    if ((mapFilterGuests.value !== 'any') && (String(temporalArray[i].offer.guests) !== String(mapFilterGuests.value))) {
       continue;
     }
-    if ((mapFilterPrice !== 'any') && (!priceFiltered(temporalArray[i].offer.price, mapFilterPrice))) {
+    if ((mapFilterPrice.value !== 'any') && (!priceFiltered(temporalArray[i].offer.price, mapFilterPrice.value))) {
       continue;
     }
     if ((selectedFilteres.length !== 0) && (!featuresFilter(temporalArray[i].offer.features, selectedFilteres))) {
