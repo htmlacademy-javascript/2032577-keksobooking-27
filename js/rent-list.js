@@ -10,7 +10,8 @@ const typeEngRUList = {
 
 const createRentAd = (ad) => {
   const adRentElement = rentListTemplate.cloneNode(true);
-  adRentElement.querySelector('.popup__avatar').setAttribute('src', ad.author.avatar);
+  const currentAvatar = `../${ad.author.avatar}`;
+  adRentElement.querySelector('.popup__avatar').setAttribute('src', currentAvatar);
   adRentElement.querySelector('.popup__title').textContent = ad.offer.title;
   adRentElement.querySelector('.popup__text--address').textContent = ad.offer.address;
   adRentElement.querySelector('.popup__text--price').textContent = `${ad.offer.price} ₽/ночь`;

@@ -20,9 +20,7 @@ const pristine = new Pristine(adForm, {
   erorTextClass: 'form__error',
 });
 
-function validateTitle(value) {
-  return value.length >= 30 && value.length <= 100;
-}
+const validateTitle = (value) => value.length >= 30 && value.length <= 100;
 
 pristine.addValidator(
   adForm.querySelector('#title'),
@@ -41,17 +39,11 @@ const priceOption = {
   palace: 10000,
 };
 
-function validatePrice() {
-  return (
-    priceField.value < 100000 && priceField.value >= priceOption[typeForm.value]
-  );
-}
+const validatePrice = () => priceField.value < 100000 && priceField.value >= priceOption[typeForm.value];
 
-function getValidateErrorText() {
-  return priceField.value < 100000
-    ? `Минимальная цена за ночь ${priceOption[typeForm.value]}.`
-    : 'Максимальная цена за ночь 100 000.';
-}
+const getValidateErrorText = () => priceField.value < 100000
+  ? `Минимальная цена за ночь ${priceOption[typeForm.value]}.`
+  : 'Максимальная цена за ночь 100 000.';
 
 pristine.addValidator(
   adForm.querySelector('#price'),
